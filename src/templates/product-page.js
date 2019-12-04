@@ -4,6 +4,40 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import ProductCard from '../components/bigcommerce/ProductCard';
 
+
+
+
+
+
+import styled from  'styled-components';
+
+const Container = styled.div`
+
+max-width: 1440px;
+display: flex;
+flex-wrap: wrap;
+margin-left: auto;
+margin-right: auto;
+padding-top: 200px;
+
+`;
+
+const ProductContainer = styled.div`
+  width: 75%;
+  display: flex;
+ flex-wrap: wrap;
+`;
+
+
+
+
+const FilterBar = styled.div`
+width: 25%;
+height: 50vh;
+
+
+`;
+
 export const ProductPageTemplate = ({
   image,
   title,
@@ -11,37 +45,33 @@ export const ProductPageTemplate = ({
   description,
   products
 }) => (
-  <div className="content">
-    <div
-      className="full-width-image-container margin-top-0"
-      style={{
-        backgroundImage: `url(${
-          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
-        })`
-      }}>
-      <h2
-        className="has-text-weight-bold is-size-1"
-        style={{
-          boxShadow:
-            '0.5rem 0 0 rgba(0, 0, 0, 0.75), -0.5rem 0 0 rgba(0, 0, 0, 0.75)',
-          backgroundColor: 'rgba(0, 0, 0, 0.75)',
-          color: 'white',
-          padding: '1rem'
-        }}>
-        {title}
-      </h2>
-    </div>
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="section bc-product-grid bc-product-grid--archive bc-product-grid--4col">
-          {products.map(product => (
+  <Container>
+
+
+  <FilterBar>
+FILTER
+
+  </FilterBar>
+
+<ProductContainer>
+
+{products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
-      </div>
-    </section>
-  </div>
+</ProductContainer>
+
+
+
+
+  </Container>
 );
+
+
+
+
+
+
+
 
 ProductPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

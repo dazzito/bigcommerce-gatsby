@@ -6,6 +6,35 @@ import Loader from '../Loader';
 
 import CartContext from '../../context/CartProvider';
 
+import styled from 'styled-components'
+
+import {flexbox , space, layout, typography, color, background} from 'styled-system'
+
+const Box = styled.div`
+  ${space}
+  ${layout}
+  ${typography}
+  ${color}
+  ${background}
+  ${flexbox};
+  
+  position: relative;
+`
+
+const CartItem = styled.div`
+
+
+
+
+
+`;
+
+
+
+
+
+
+
 const AdjustItem = props => {
   const { item, updatingItem, cartType } = props;
   let minusBtn, plusBtn;
@@ -108,13 +137,13 @@ const StandardItems = props => {
         }
 
         return (
-          <div className="bc-cart-item" key={item.id}>
+          <CartItem key={item.id}>
             {itemImage}
             
-            <div className="bc-cart-item-meta">
-              <h3 className="bc-cart-item__product-title">{item.name}</h3>
-              <span className="bc-cart-item__product-brand">{item.sku}</span>
-            </div>
+           
+              <h3>{item.name}</h3>
+              <span>{item.sku}</span>
+            
 
             <AdjustItem {...props} item={item} cartType={cartType} />
 
@@ -124,7 +153,7 @@ const StandardItems = props => {
                 amount={item.list_price}
               />
             </div>
-          </div>
+          </CartItem>
         )
       })}
     </>
@@ -248,7 +277,8 @@ const Cart = class extends React.Component {
                     </h2>
                   </div>
                 ) : numberItems > 0 ? (
-                  <div className="bc-cart-body">
+                  <Box display='flex' flexDirection='column'>
+
                     <StandardItems
                       currency={currency}
                       updatingItem={updatingItem}
@@ -280,7 +310,7 @@ const Cart = class extends React.Component {
                       items={lineItems.gift_certificates}
                       cartType={cartType}
                     />
-                  </div>
+                  </Box>
                 ) : (
                   <div className="bc-cart__empty">
                     <h2 className="bc-cart__title--empty">

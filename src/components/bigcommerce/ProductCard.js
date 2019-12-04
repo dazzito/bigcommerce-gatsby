@@ -1,17 +1,137 @@
-import React from 'react';
+import React, { createContext, useState, useEffect }  from 'react';
 import { Link } from 'gatsby';
 import AddToCartButton from './AddToCartButton';
 import ProductPrices from './ProductPrices';
+
+
+import styled from 'styled-components';
+
+
+import {flexbox , space, layout, typography, color, background} from 'styled-system'
+
+
+
+
+
+//GENERIC
+
+const Row = styled.div`
+  display: flex;
+  justify-content: row;
+`;
+
+
+const Box = styled.div`
+  ${space}
+  ${layout}
+  ${typography}
+  ${color}
+  ${background}
+  ${flexbox};
+  
+  position: relative;
+`
+
+const Flex = styled(Box)`
+  display: flex;
+ 
+`
+
+
+
+
+const MetaBox = styled.div`
+position: absolute;
+display: flex;
+flex-direction: column;
+bottom: 0;
+left: 0;
+right: 0;
+${space}
+
+`;
+
+// const Img = styled.img`
+  
+// `;
+
+
+
+// const Card = styled.div`
+//   width: 300px;
+
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: nowrap;
+//   margin: 1em; 
+//   border: solid #fafafa;
+//     padding: 1em;
+// `;
+
+
+// const Img = styled.img`
+
+
+// `;
+
+
+const CardImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+`
+
+
+const MetaText = styled(Link)`
+    color: #585858;
+    /* background: #f5f5f5; */
+    border-radius: 4px;
+    /* white-space: nowrap; */
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
+    flex: 1;
+    /* padding: 0em 0.25em; */
+    margin-bottom: 0.75em;
+`;
+
+const MetaContainer = styled.div`
+    
+    margin-top: 0.75em;
+    display: flex;
+    flex-direction: column;
+`;
+
+const MetaRow = styled(Row)`
+  flex: 1;
+
+  *{
+    flex: 1;
+  }
+
+
+`;
+
+
+
+
+
 
 class ProductCard extends React.Component {
   render() {
     const product = this.props.product;
 
     return (
-      <div className="bc-product-card">
-        <Link to={`/products${product.custom_url.url}`} className="bc-product-card-image-anchor" title={product.name}>
-          <div className="bc-product-card__featured-image">
-            <img
+
+
+
+     
+      <Flex width={200}  m={2} flexDirection='column' >
+        <img
               className="attachment-bc-medium size-bc-medium"
               src={
                 (product.images.length && product.images[0].url_standard) ||
@@ -19,23 +139,41 @@ class ProductCard extends React.Component {
               }
               alt={product.name}
             />
-          </div>
-        </Link>
 
-        <div className="bc-product__meta">
-          <h3 className="bc-product__title">
-            <Link to={`/products${product.custom_url.url}`} className="bc-product__title-link" title={product.name}>{product.name}</Link>
-          </h3>
-          
-          <ProductPrices product={product} />
-        </div>
+              <Flex flex={1} flexDirection='column'>
+              
+              <Box p={1}>
+              <Box flex={1} >
+              <MetaText to={`/products${product.custom_url.url}`}>
+              {product.name}
+              </MetaText>
 
-        <AddToCartButton
+              <ProductPrices product={product} />
+              </Box>
+             
+              </Box>
+            
+              
+            
+      
+      <Box mt="auto">
+      <AddToCartButton 
           productId={product.variants[0].product_id}
           variantId={product.variants[0].id}>
           Add to Cart
         </AddToCartButton>
-      </div>
+
+      </Box>
+     
+      
+              </Flex>
+
+      
+      </Flex>
+     
+    
+
+     
     )
   }
 }

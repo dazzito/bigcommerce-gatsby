@@ -5,6 +5,21 @@ import AddToCartButton from '../components/bigcommerce/AddToCartButton';
 import ProductPrices from '../components/bigcommerce/ProductPrices';
 import Layout from '../components/Layout';
 
+
+import styled from "styled-components"
+
+
+const Container = styled.div`
+
+max-width: 1440px;
+display: flex;
+flex-wrap: wrap;
+margin-left: auto;
+margin-right: auto;
+
+`;
+
+
 export default ({
   data: {
     allBigCommerceProducts: {
@@ -43,6 +58,51 @@ export default ({
 
   return (
     <Layout>
+
+
+<Container>
+
+<h1>
+
+{name}
+
+</h1>
+
+<div className="bc-product__gallery">
+                <img
+                  src={
+                    (selectedImage && selectedImage) ||
+                    '/img/default-bc-product.png'
+                  }
+                  alt="Main"
+                  style={{ objectFit: 'contain' }}
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    cursor: 'pointer',
+                    justifyContent: 'center'
+                  }}>
+                  {images.length &&
+                    images.map(img => (
+                      <img
+                        height="100px"
+                        width="100px"
+                        src={img.url_thumbnail}
+                        alt="Thumb"
+                        key={JSON.stringify(img)}
+                        onClick={() => updateSelectedImage(img.url_standard)}
+                      />
+                    ))}
+                </div>
+                </div>
+
+
+
+</Container>
+
+
+{/* 
       <div className="content">
         <div className="has-text-centered margin-top-0">
           <h1
@@ -127,7 +187,7 @@ export default ({
             </section>
           </div>
         </section>
-      </div>
+      </div> */}
     </Layout>
   );
 };

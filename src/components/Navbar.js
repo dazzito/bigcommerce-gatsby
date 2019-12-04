@@ -44,7 +44,21 @@ const Navbar = class extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="My Store" />
+            <span style={{fontWeight: 'bold'}}>
+            Leo Chupr.&emsp;
+            </span>
+
+            <span style={{ color:'white', background:'#363636', fontWeight: 'bold'}}>
+            &emsp;Frontstore&emsp;
+
+            </span>
+
+            <span style={{ color:'white', background:'#1d1d1d', fontWeight: 'bold'}}>
+            &emsp;0.11 &emsp;
+
+            </span>
+            
+              {/* <img src={logo} alt="My Store" /> */}
             </Link>
             {/* Hamburger menu */}
             <div
@@ -72,6 +86,8 @@ const Navbar = class extends React.Component {
               <Link className="navbar-item" to="/contact">
                 Contact
               </Link>
+              
+              
               <CartContext.Consumer>
                 {value => {
                   return (
@@ -87,6 +103,8 @@ const Navbar = class extends React.Component {
                   );
                 }}
               </CartContext.Consumer>
+
+              
             </div>
             <div className="navbar-end has-text-centered">
               <a

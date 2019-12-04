@@ -20,7 +20,10 @@ export const CartProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
   const [notifications, updateNotifications] = useState([]);
 
+
+  
   const addNotification = (text, type = 'notify') => {
+    
     updateNotifications([...notifications, { text, type, id: Date.now() }]);
   };
 
@@ -29,6 +32,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const fetchCart = () => {
+    
+
     fetch(`/.netlify/functions/bigcommerce?endpoint=carts`, {
       credentials: 'same-origin',
       mode: 'same-origin'

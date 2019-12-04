@@ -1,27 +1,57 @@
-import React, { useContext } from 'react';
+import React, { createContext, useState, useEffec, useContext }  from 'react';
 import CartContext from '../../context/CartProvider';
+import Spinner from "../spinner/Spinner"
+
+
+
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  height: fit-content;
+ 
+ span{
+   width: 100%;
+ }
+ 
+`;
+
+const Button = styled.button`
+    background: #fafafa;
+    border: solid #f6f6f6;
+    color: #606060;
+    transition: all ease 0.1s 0.2s;
+
+    &:hover{
+      background: #363636;
+      border: solid #363636;
+      color: white;
+    }
+`;
+
+
+
 
 const AddToCartButton = ({ children, productId, variantId }) => {
   const value = useContext(CartContext);
-  const addToCart = value && value.addToCart;
+  const addToCart = value && value.addToCart; 
   const addingToCart = value && value.state.addingToCart;
+  const isLoading = value && value.state.cartLoading;
+
 
   return (
-    <div className="bc-product-card">
-      <div className="bc-product__actions" data-js="bc-product-group-actions">
-        <div className="bc-form bc-product-form">
-          <div className="bc-product-form__product-message"></div>
-          <button
-            className="bc-btn bc-btn--form-submit bc-btn--add_to_cart"
-            type="submit"
-            disabled={addingToCart === productId}
-            onClick={() => addToCart(productId, variantId)}>
-            {addingToCart === productId ? 'Adding to Cart' : children}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    <Wrapper>
+
+
+
+  
+    <Button
+    type="submit"
+    disabled={addingToCart === productId}
+    onClick={() => {addingToCart ? alert("ALready loading") : value.addNotification('loading'); addToCart(productId, variantId);}}>
+    {addingToCart === productId ? <span>Adding to Cart <Spinner width="10px" height="10px" ml="6px"/></span> : children}
+  </Button>
+  </Wrapper>
+  ); 
 };
 
 export default AddToCartButton;
