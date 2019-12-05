@@ -1,6 +1,12 @@
 
 
 
+.Collapsible{
+   
+    border-bottom: solid 1px #eeeeee;
+    padding-top: 0.5em;
+}
+
 .Collapsible__contentInner{
 
     display: flex;
@@ -12,7 +18,7 @@
    
 
 .Collapsible__contentOuter{
-    margin: 0.5em 0;
+    margin-top: 0.5em;
 }
 
 
