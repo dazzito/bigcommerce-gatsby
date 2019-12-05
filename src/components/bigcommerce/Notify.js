@@ -30,6 +30,7 @@ const Box = styled.div`
 const CartSidebar = styled.div`
       bottom: 0;
     right: 0;
+    z-index: 999;
     top: 0;
     position: fixed;
   padding: 1rem;
@@ -122,13 +123,14 @@ const Notification = ({ id, text, type }) => {
   }, []);
 
 
-
+ 
   if(text=="loading"){
     return (
       <CartSidebar>
        <h2>Your Cart</h2>
+       <CloseIcon position="absolute" top="0.5em" right="0.5em" width={25} height={25} onClick={() => removeNotification(id)}/>
 
-       <h3>Loading...</h3>
+       <h3>Loading...</h3> 
     <Box textAlign='center'><Spinner/></Box>
     </CartSidebar>
     );
@@ -141,31 +143,32 @@ const Notification = ({ id, text, type }) => {
 
       <CartSidebar>
     
-    
+     
       <h3>Your Cart</h3>
-  <CloseIcon width={25} height={25} onClick={() => removeNotification(id)}/>
+      <CloseIcon position="absolute" top="0.5em" right="0.5em" width={25} height={25} onClick={() => removeNotification(id)}/>
           
  
 
+  <Cart cartType="overlay" />
 
-          <div className="bc-ajax-add-to-cart__message-wrapper">
+
+          {/* <div className="bc-ajax-add-to-cart__message-wrapper">
             <p className="bc-ajax-add-to-cart__message bc-alert bc-alert--success">{text == "loading" ? "Loading cart..." : text}</p>
           
-          </div> 
+          </div>  */}
 
          
          
-          <Cart cartType="overlay" />
-
-          
+{/*           
           <div className="Actions">
             <Link to="/cart" className="bc-btn" onClick={() => removeNotification(id)}>View Cart</Link>
             <a href={value.state.cart.redirectUrls.checkout_url} className="bc-btn">Proceed to Checkout</a>
           </div>
     
-    
+     */}
 
-    
+<Link to="/cart" onClick={() => removeNotification(id)}>View Cart</Link>
+             <a href={value.state.cart.redirectUrls.checkout_url}>Proceed to Checkout</a>
     
     </CartSidebar>
     

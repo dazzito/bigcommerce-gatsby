@@ -1,0 +1,24 @@
+
+
+
+.Collapsible__contentInner{
+
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 300px;
+    overflow: auto;
+
+}
+   
+
+.Collapsible__contentOuter{
+    margin: 0.5em 0;
+}
+
+
+
+.Collapsible__trigger{
+    font-weight: 500;
+    flex: 1;
+    display: flex;
+}

@@ -1,14 +1,21 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from "react";
+import { Link } from "gatsby";
 
-import CurrencyFormatter from './CurrencyFormatter';
-import Loader from '../Loader';
+import CurrencyFormatter from "./CurrencyFormatter";
+import Loader from "../Loader";
 
-import CartContext from '../../context/CartProvider';
+import CartContext from "../../context/CartProvider";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import {flexbox , space, layout, typography, color, background} from 'styled-system'
+import {
+  flexbox,
+  space,
+  layout,
+  typography,
+  color,
+  background
+} from "styled-system";
 
 const Box = styled.div`
   ${space}
@@ -19,52 +26,53 @@ const Box = styled.div`
   ${flexbox};
   
   position: relative;
-`
-
-const CartItem = styled.div`
-
-
-
-
-
 `;
 
+const CartItem = styled.div`
+  text-align: left;
+  border-bottom: solid 1px;
+    padding: 1em;
+`;
 
-
-
-
-
+const QuantityButton = styled.button`
+  background: white;
+  border: none;
+  padding: 0px 10px;
+`;
 
 const AdjustItem = props => {
   const { item, updatingItem, cartType } = props;
   let minusBtn, plusBtn;
 
-  if (cartType === 'full') {
+  if (cartType === "full") {
     minusBtn = (
-      <button
-        className="bc-btn"
-        onClick={() => props.updateCartItemQuantity(item, 'minus')}>
+      <button onClick={() => props.updateCartItemQuantity(item, "minus")}>
         -
       </button>
-    )
+    );
 
     plusBtn = (
-      <button
-        className="bc-btn"
-        onClick={() => props.updateCartItemQuantity(item, 'plus')}>
+      <button onClick={() => props.updateCartItemQuantity(item, "plus")}>
         +
       </button>
-    )
+    );
   }
 
   return (
-    <div className="bc-cart-item-quantity">
-      {minusBtn}
+    <Box display="flex" flexDirection="row">
+      <QuantityButton
+        onClick={() => props.updateCartItemQuantity(item, "minus")}
+      >
+        -
+      </QuantityButton>
 
       {updatingItem === item.id ? <Loader /> : <div>{item.quantity}</div>}
-      
-      {plusBtn}
-    </div>
+      <QuantityButton
+        onClick={() => props.updateCartItemQuantity(item, "plus")}
+      >
+        +
+      </QuantityButton>
+    </Box>
   );
 };
 
@@ -76,39 +84,38 @@ const CustomItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
+        if (cartType === "full") {
           itemImage = (
             <div className="bc-cart-item-image">
               <img src="/img/default-bc-product.png" alt={`${item.name}`} />
               <button
                 className="bc-link bc-cart-item__remove-button"
                 onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
+                type="button"
+              >
                 Remove
               </button>
             </div>
-          )
+          );
         }
 
         return (
           <div className="bc-cart-item" key={item.id}>
             {itemImage}
-            
+
             <div className="bc-cart-item-meta">
               <h3 className="bc-cart-item__product-title">{item.name}</h3>
               <span className="bc-cart-item__product-brand">{item.sku}</span>
             </div>
-            
+
             <AdjustItem {...props} item={item} cartType={cartType} />
 
-            <div className="bc-cart-item-total-price">
-              <CurrencyFormatter
-                currency={props.currency.code}
-                amount={item.list_price}
-              />
-            </div>
+            <CurrencyFormatter
+              currency={props.currency.code}
+              amount={item.list_price}
+            />
           </div>
-        )
+        );
       })}
     </>
   );
@@ -122,39 +129,41 @@ const StandardItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
+        if (cartType === "full") {
           itemImage = (
             <div className="bc-cart-item-image">
               <img src={item.image_url} alt={`${item.name}`} />
               <button
                 className="bc-link bc-cart-item__remove-button"
                 onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
+                type="button"
+              >
                 Remove
               </button>
             </div>
-          )
+          );
         }
 
         return (
           <CartItem key={item.id}>
             {itemImage}
-            
-           
-              <h3>{item.name}</h3>
-              <span>{item.sku}</span>
-            
-
             <AdjustItem {...props} item={item} cartType={cartType} />
 
-            <div className="bc-cart-item-total-price">
-              <CurrencyFormatter
+            <h3>{item.name}</h3>
+           
+
+
+            <Box display="flex" justifyContent="space-between"> 
+            <span>{item.sku}</span>
+             <CurrencyFormatter
                 currency={props.currency.code}
                 amount={item.list_price}
               />
-            </div>
+
+            </Box>
+           
           </CartItem>
-        )
+        );
       })}
     </>
   );
@@ -168,17 +177,18 @@ const GiftCertificateItems = props => {
   return (
     <>
       {items.map(item => {
-        if (cartType === 'full') {
+        if (cartType === "full") {
           itemImage = (
             <div className="bc-cart-item-image">
               <button
                 className="bc-link bc-cart-item__remove-button"
                 onClick={() => props.removeItemFromCart(item.id)}
-                type="button">
+                type="button"
+              >
                 Remove
               </button>
             </div>
-          )
+          );
         }
 
         return (
@@ -194,14 +204,12 @@ const GiftCertificateItems = props => {
               </span>
             </div>
 
-            <div className="bc-cart-item-total-price">
-              <CurrencyFormatter
+            <CurrencyFormatter
                 currency={props.currency.code}
                 amount={item.amount}
               />
-            </div>
           </div>
-        )
+        );
       })}
     </>
   );
@@ -210,7 +218,7 @@ const GiftCertificateItems = props => {
 const Cart = class extends React.Component {
   render() {
     const cartType = this.props.cartType;
-    let cartFooter;             
+    let cartFooter;
 
     return (
       <CartContext.Consumer>
@@ -228,7 +236,7 @@ const Cart = class extends React.Component {
           } = state.cart;
           const { updatingItem } = state;
 
-          if (cartType === 'full') {
+          if (cartType === "full") {
             cartFooter = (
               <footer className="bc-cart-footer">
                 <div className="bc-cart-subtotal">
@@ -246,85 +254,59 @@ const Cart = class extends React.Component {
                     <form
                       action={redirectUrls.checkout_url}
                       method="post"
-                      encType="multipart/form-data">
+                      encType="multipart/form-data"
+                    >
                       <button
                         className="bc-btn bc-cart-actions__checkout-button"
-                        type="submit">
+                        type="submit"
+                      >
                         Proceed to Checkout
                       </button>
                     </form>
                   </div>
                 )}
               </footer>
-            )
+            );
           }
 
           return (
-            <div className="container">
-              <section className="bc-cart">
-                <div className="bc-cart-error">
-                  <p className="bc-cart-error__message"></p>
-                </div>
-                <header className="bc-cart-header">
-                  <div className="bc-cart-header__item">Item</div>
-                  <div className="bc-cart-header__qty">Qty</div>
-                  <div className="bc-cart-header__price">Price</div>
-                </header>
-                {state.cartLoading ? (
-                  <div className="bc-cart__empty">
-                    <h2 className="bc-cart__title--empty">
-                      <em>Loading Cart</em>
-                    </h2>
-                  </div>
-                ) : numberItems > 0 ? (
-                  <Box display='flex' flexDirection='column'>
+            <>
+              <Box display="flex" flexDirection="column" overflow="auto">
+                <StandardItems
+                  currency={currency}
+                  updatingItem={updatingItem}
+                  updateCartItemQuantity={updateCartItemQuantity}
+                  removeItemFromCart={removeItemFromCart}
+                  items={lineItems.physical_items}
+                  cartType={cartType}
+                />
+                <StandardItems
+                  currency={currency}
+                  updatingItem={updatingItem}
+                  updateCartItemQuantity={updateCartItemQuantity}
+                  removeItemFromCart={removeItemFromCart}
+                  items={lineItems.digital_items}
+                  cartType={cartType}
+                />
+                <CustomItems
+                  currency={currency}
+                  updatingItem={updatingItem}
+                  updateCartItemQuantity={updateCartItemQuantity}
+                  removeItemFromCart={removeItemFromCart}
+                  items={lineItems.custom_items}
+                  cartType={cartType}
+                />
+                <GiftCertificateItems
+                  currency={currency}
+                  updatingItem={updatingItem}
+                  removeItemFromCart={removeItemFromCart}
+                  items={lineItems.gift_certificates}
+                  cartType={cartType}
+                />
+              </Box>
 
-                    <StandardItems
-                      currency={currency}
-                      updatingItem={updatingItem}
-                      updateCartItemQuantity={updateCartItemQuantity}
-                      removeItemFromCart={removeItemFromCart}
-                      items={lineItems.physical_items}
-                      cartType={cartType}
-                    />
-                    <StandardItems
-                      currency={currency}
-                      updatingItem={updatingItem}
-                      updateCartItemQuantity={updateCartItemQuantity}
-                      removeItemFromCart={removeItemFromCart}
-                      items={lineItems.digital_items}
-                      cartType={cartType}
-                    />
-                    <CustomItems
-                      currency={currency}
-                      updatingItem={updatingItem}
-                      updateCartItemQuantity={updateCartItemQuantity}
-                      removeItemFromCart={removeItemFromCart}
-                      items={lineItems.custom_items}
-                      cartType={cartType}
-                    />
-                    <GiftCertificateItems
-                      currency={currency}
-                      updatingItem={updatingItem}
-                      removeItemFromCart={removeItemFromCart}
-                      items={lineItems.gift_certificates}
-                      cartType={cartType}
-                    />
-                  </Box>
-                ) : (
-                  <div className="bc-cart__empty">
-                    <h2 className="bc-cart__title--empty">
-                      Your cart is empty.
-                    </h2>
-                    <Link to="/products" className="bc-cart__continue-shopping">
-                      Take a look around.
-                    </Link>
-                  </div>
-                )}
-
-                {cartFooter}
-              </section>
-            </div>
+              {cartFooter}
+            </>
           );
         }}
       </CartContext.Consumer>

@@ -4,12 +4,27 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import ProductCard from '../components/bigcommerce/ProductCard';
 
+import Select from "../components/front/Select"
 
-
-
+import ProductFilter from '../components/bigcommerce/ProductFilter';
 
 
 import styled from  'styled-components';
+
+import {flexbox , space, layout, typography, color, background} from 'styled-system'
+
+const Box = styled.div`
+  ${space}
+  ${layout}
+  ${typography}
+  ${color}
+  ${background}
+  ${flexbox};
+  
+  position: relative;
+`
+
+
 
 const Container = styled.div`
 
@@ -18,7 +33,7 @@ display: flex;
 flex-wrap: wrap;
 margin-left: auto;
 margin-right: auto;
-padding-top: 200px;
+padding: 200px 0;
 
 `;
 
@@ -26,6 +41,7 @@ const ProductContainer = styled.div`
   width: 75%;
   display: flex;
  flex-wrap: wrap;
+ border-left: solid 1px #eeeeee;
 `;
 
 
@@ -38,6 +54,21 @@ height: 50vh;
 
 `;
 
+
+const Label = styled.label`
+ ${space}
+
+`;
+
+const TopOptions = styled.div`
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  border-bottom: solid 1px #eeeeee;
+  position: relative;
+`;
+
+
 export const ProductPageTemplate = ({
   image,
   title,
@@ -49,15 +80,88 @@ export const ProductPageTemplate = ({
 
 
   <FilterBar>
-FILTER
+<ProductFilter/>
 
   </FilterBar>
 
 <ProductContainer>
 
+<TopOptions >
+
+<label>
+
+  <small>Sort By</small>
+
+<Select height="48px">
+        <option value="0">
+          Newest
+        </option>
+        <option value="1">Featured</option>
+        <option value="2">Price: Low to High</option>
+        <option value="3">Price: High to Low</option>
+    
+
+
+</Select>
+
+
+</label>
+
+<label>
+
+  <small> Showing x of y items</small>
+
+<Select height="48px">
+        <option value="0">
+          16
+        </option>
+        <option value="1">32</option>
+        <option value="2">64</option>
+        <option value="3">128</option>
+   
+    
+
+
+</Select>
+
+
+</label>
+
+<Label ml="auto">
+
+  <small> Page </small>
+
+<Select height="48px">
+        <option value="0">
+          1
+        </option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option> 
+    
+   
+    
+
+
+</Select>
+
+<small> of </small>
+        <small> [MAX_PAGE] </small>
+
+</Label>
+
+
+
+</TopOptions>
+
+
+
 {products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
+
+
+
 </ProductContainer>
 
 

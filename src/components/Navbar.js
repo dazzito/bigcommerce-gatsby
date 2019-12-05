@@ -5,6 +5,27 @@ import logo from '../img/logo-header.png';
 
 import CartContext from '../context/CartProvider';
 
+
+import styled from  'styled-components';
+
+import {flexbox , space, layout, typography, color, background} from 'styled-system'
+
+const Box = styled.div`
+  ${space}
+  ${layout}
+  ${typography}
+  ${color}
+  ${background}
+  ${flexbox};
+  
+  position: relative;
+`
+
+
+
+
+
+
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props);
