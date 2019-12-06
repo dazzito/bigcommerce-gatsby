@@ -33,7 +33,11 @@ display: flex;
 flex-wrap: wrap;
 margin-left: auto;
 margin-right: auto;
-padding: 200px 0;
+border: solid 1px #eeeeee;
+margin-bottom: 20vh;
+  
+    border-top: 0;
+
 
 `;
 

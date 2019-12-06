@@ -252,7 +252,7 @@ const ProductFilter = ({}) => {
 
 	return (
 		<Wrapper>
-			<h3>Search Filter</h3>
+			<h4>Search Filter</h4>
 			{/* <label>
 
 <input
@@ -265,7 +265,7 @@ const ProductFilter = ({}) => {
 
 </label> */}
 			<Collapsible
-				open={false}
+				open={true}
 				transitionTime={100}
 				easing="cubic-bezier(0.445, 0.050, 0.550, 0.950)"
 				tabIndex={0}
@@ -312,7 +312,7 @@ const ProductFilter = ({}) => {
 				</Label>
 			</Collapsible>
 			<Collapsible
-				open={false}
+				open={true}
 				transitionTime={100}
 				easing="cubic-bezier(0.445, 0.050, 0.550, 0.950)"
 				tabIndex={1}
@@ -335,7 +335,7 @@ const ProductFilter = ({}) => {
 			</Collapsible>
 
       <Collapsible
-				open={false}
+				open={true}
 				transitionTime={100}
 				easing="cubic-bezier(0.445, 0.050, 0.550, 0.950)"
 				tabIndex={1}

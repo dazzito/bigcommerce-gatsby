@@ -23,6 +23,32 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        features: {
+          auth: true,
+          database: true,
+          firestore: false,
+          storage: false,
+          messaging: false,
+          functions: false,
+          performance: false
+
+        },
+        credentials: {
+          apiKey: "AIzaSyD9yAHVvb_F911WYp1QMfEKEyN5KEsSgCY",
+          authDomain: "naaz-gemstore.firebaseapp.com",
+          databaseURL: "https://naaz-gemstore.firebaseio.com",
+          projectId: "naaz-gemstore",
+          storageBucket: "naaz-gemstore.appspot.com",
+          messagingSenderId: "358969531272",
+          appId: "1:358969531272:web:2c331fede77560a302b83d",
+          measurementId: "G-X7PTKC3JKZ"
+        }
+      },
+    },
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     {

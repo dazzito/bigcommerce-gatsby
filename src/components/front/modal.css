@@ -1,0 +1,31 @@
+
+  .modal-shade,
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .modal-shade {
+    background: rgba(0, 0, 0, 0.9);
+    will-change: opacity;
+    z-index: 2;
+  }
+  
+  .modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  .modal {
+    background: white;
+    border-radius: 20px;
+    width: 400px;
+    height: 350px;
+  }
+  

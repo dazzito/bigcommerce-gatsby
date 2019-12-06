@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import github from '../img/github-icon.svg';
-import logo from '../img/logo-header.png';
+import logo from '../img/logo.png';
 
 import CartContext from '../context/CartProvider';
 
@@ -9,7 +9,8 @@ import CartContext from '../context/CartProvider';
 import styled from  'styled-components';
 
 import {flexbox , space, layout, typography, color, background} from 'styled-system'
-
+import NavIdentity from './front/Identity/NavIdentity';
+import { motion } from "framer-motion";
 const Box = styled.div`
   ${space}
   ${layout}
@@ -23,6 +24,29 @@ const Box = styled.div`
 
 
 
+
+
+const NavItem = styled(Link)`
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    color: inherit;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+    position: relative;
+    align-self: center;
+
+
+  &:hover{
+    color: inherit;
+  }
+
+  @media screen and (min-width: 1024px)
+  {
+    display: flex;
+  }
+
+`;
 
 
 
@@ -65,8 +89,18 @@ const Navbar = class extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item" title="Logo">
-            <span style={{fontWeight: 'bold'}}>
-            Leo Chupr.&emsp;
+            <img src={logo} alt="Naaz" />
+            </Link>
+           
+            <NavItem to="/about">
+            <motion.div animate={{y: -3, scale:0.9  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
+
+<span style={{fontWeight: 'bold'}}>
+            By Leo Chupr.&emsp;
             </span>
 
             <span style={{ color:'white', background:'#363636', fontWeight: 'bold'}}>
@@ -79,8 +113,12 @@ const Navbar = class extends React.Component {
 
             </span>
             
-              {/* <img src={logo} alt="My Store" /> */}
-            </Link>
+                </motion.div>
+              </NavItem>
+           
+          
+            
+           
             {/* Hamburger menu */}
             <div
               className={`navbar-burger burger ${this.state.navBarActiveClass}`}
@@ -95,24 +133,67 @@ const Navbar = class extends React.Component {
             id="navMenu"
             className={`navbar-menu ${this.state.navBarActiveClass}`}>
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
-              </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
+
+           
+
+            <NavItem to="/about">
+            <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
+
+
+                About Naaz
+                </motion.div>
+              </NavItem>
+            
+
+            
+      
+
+              <NavItem to="/products">
+              <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
+
+                Store
+                </motion.div>
+              </NavItem>
+
+
+              <NavItem to="/blog">
+              <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
                 Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
+                </motion.div>
+              </NavItem>
+              <NavItem to="/contact">
+              <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
                 Contact
-              </Link>
+                 </motion.div>
+              </NavItem>
               
               
               <CartContext.Consumer>
                 {value => {
                   return (
-                    <Link className="navbar-item menu-item-bigcommerce-cart" to="/cart">
+                    <NavItem className="navbar-item menu-item-bigcommerce-cart" to="/cart">
+                     
+                     <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
+             transformTemplate={(props, transform) =>
+              // Disable GPU acceleration to prevent blurry text
+              transform.replace(" translateZ(0)", "")
+            }>
                       Cart
                       
                       {value &&
@@ -120,7 +201,9 @@ const Navbar = class extends React.Component {
                         value.state.cart.numberItems > 0 && (
                           <span className="bigcommerce-cart__item-count full">{value.state.cart.numberItems}</span>
                         )}
-                    </Link>
+
+</motion.div>
+                    </NavItem>
                   );
                 }}
               </CartContext.Consumer>
@@ -128,15 +211,17 @@ const Navbar = class extends React.Component {
               
             </div>
             <div className="navbar-end has-text-centered">
-              <a
+
+              <NavIdentity/>
+              {/* <a
                 className="navbar-item"
                 href="https://github.com/bigcommerce/gatsby-bigcommerce-netlify-cms-starter"
                 target="_blank"
                 rel="noopener noreferrer">
                 <span className="icon">
-                  <img src={github} alt="Github" />
+                  <img src={github} alt="Github" /> 
                 </span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

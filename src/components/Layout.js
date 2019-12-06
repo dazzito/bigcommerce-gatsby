@@ -10,6 +10,15 @@ import './front/typography.scss';
 
 import useSiteMetadata from './SiteMetadata';
 
+import styled from  'styled-components';
+
+const Wrapper = styled.div`
+
+  border-top: solid 1px #eeeeee;
+`;
+
+
+
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   return (
@@ -52,7 +61,7 @@ const TemplateWrapper = ({ children }) => {
       </Helmet>
       <Notify />
       <Navbar />
-      <div>{children}</div>
+      <Wrapper>{children}</Wrapper>
       <Footer />
     </div>
   );

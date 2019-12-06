@@ -13,11 +13,11 @@ import {flexbox , space, layout, typography, color, background} from 'styled-sys
 
 const Wrapper = styled.div`
   flex: 195px;
-  /* width: 195px; */
+  /* width: 195px; */     
   margin: 10px; 
   flex-direction: column;
-  border: solid 1px #eeeeee;
-
+  /* border: solid 1px #eeeeee; */
+  display: flex;
   &:hover {
     /* box-shadow: 0px 0px 2px #d1d1d1; */
     

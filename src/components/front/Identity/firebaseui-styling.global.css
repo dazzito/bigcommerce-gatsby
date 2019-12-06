@@ -1,0 +1,37 @@
+:root {
+    --secondary-color: #212121;
+    --accent-color: #d0cba4;
+  
+  }
+
+
+.firebaseui-container {
+
+    box-shadow: none !important;
+}
+ 
+
+
+/* 
+
+.mdl-button--raised.mdl-button--colored{
+
+
+    background-color:var(--secondary-color) !important;
+    color: white !important;
+}
+
+
+.mdl-button--raised.mdl-button--colored:hover{
+
+    background-color: var(--accent-color) !important;
+    color: #212121 !important;
+}
+
+
+.mdl-button--raised.mdl-button--colored:active{
+
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+
+} */
