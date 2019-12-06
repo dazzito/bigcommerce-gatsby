@@ -11,7 +11,19 @@ import {flexbox , space, layout, typography, color, background} from 'styled-sys
 
 
 
+const Wrapper = styled.div`
+  flex: 195px;
+  /* width: 195px; */
+  margin: 10px; 
+  flex-direction: column;
+  border: solid 1px #eeeeee;
 
+  &:hover {
+    /* box-shadow: 0px 0px 2px #d1d1d1; */
+    
+  }
+
+`;
 
 //GENERIC
 
@@ -97,6 +109,7 @@ const MetaText = styled(Link)`
     flex: 1;
     /* padding: 0em 0.25em; */
     margin-bottom: 0.75em;
+    font-size: 0.9em;
 `;
 
 const MetaContainer = styled.div`
@@ -130,7 +143,7 @@ class ProductCard extends React.Component {
 
 
      
-      <Flex width={200}  m={2} flexDirection='column' >
+      <Wrapper  >
         <img
               className="attachment-bc-medium size-bc-medium"
               src={
@@ -142,7 +155,7 @@ class ProductCard extends React.Component {
 
               <Flex flex={1} flexDirection='column'>
               
-              <Box p={1}>
+              <Box p={"0.5em"}>
               <Box flex={1} >
               <MetaText to={`/products${product.custom_url.url}`}>
               {product.name}
@@ -169,7 +182,7 @@ class ProductCard extends React.Component {
               </Flex>
 
       
-      </Flex>
+      </Wrapper>
      
     
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CheckboxContainer = styled.div`
+const CheckboxContainer = styled.label`
   display: inline-block;
   vertical-align: middle;
 `
@@ -24,7 +24,7 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   margin: -1px;
   overflow: hidden;
   padding: 0;
-  position: absolute;
+  position: relative;
   white-space: nowrap;
   width: 1px;
 `
@@ -38,7 +38,7 @@ const StyledCheckbox = styled.div`
   background: ${props => (props.checked ? 'black' : 'white')};
   /* border-radius: 3px; */
 
-  transition: ease all 0.2s 0.2s;
+  transition: ease all 0.1s 0s;
     &:hover{
         transform: scale(1.1)
     }

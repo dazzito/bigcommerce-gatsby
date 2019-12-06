@@ -5,6 +5,9 @@ import Navbar from './Navbar';
 import Notify from './bigcommerce/Notify';
 import './all.sass';
 import './Layout.css';
+
+import './front/typography.scss';
+
 import useSiteMetadata from './SiteMetadata';
 
 const TemplateWrapper = ({ children }) => {
