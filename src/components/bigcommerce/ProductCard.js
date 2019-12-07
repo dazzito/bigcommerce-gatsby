@@ -13,6 +13,7 @@ import {flexbox , space, layout, typography, color, background} from 'styled-sys
 
 const Wrapper = styled.div`
   flex: 195px;
+  max-width: 195px;
   /* width: 195px; */     
   margin: 10px; 
   flex-direction: column;

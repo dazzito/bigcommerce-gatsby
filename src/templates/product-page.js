@@ -46,6 +46,12 @@ const ProductContainer = styled.div`
   display: flex;
  flex-wrap: wrap;
  border-left: solid 1px #eeeeee;
+
+ @media screen and (max-width: 1024px)
+  {
+    width: 100%;
+ 
+  }
 `;
 
 
@@ -53,7 +59,14 @@ const ProductContainer = styled.div`
 
 const FilterBar = styled.div`
 width: 25%;
-height: 50vh;
+
+display: flex;
+flex-direction: column;
+@media screen and (max-width: 1024px)
+  {
+    width: 100%;
+    flex-direction: row;
+  }
 
 
 `;
@@ -70,6 +83,9 @@ const TopOptions = styled.div`
   display: flex;
   border-bottom: solid 1px #eeeeee;
   position: relative;
+
+
+  
 `;
 
 
