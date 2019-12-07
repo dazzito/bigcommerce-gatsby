@@ -87,7 +87,7 @@ function NavIdentity() {
           auth.EmailAuthProvider.PROVIDER_ID,
           
         ],
-        // signInSuccessUrl: '/app/profile',
+        signInSuccessUrl: '/',
         callbacks: {
           signInSuccessWithAuthResult: (result) => {
            // setUser(result.user);
