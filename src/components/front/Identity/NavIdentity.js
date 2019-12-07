@@ -6,7 +6,7 @@ import { useFirebase } from "gatsby-plugin-firebase"
 import { useState, useEffect} from "react"
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseui from 'firebaseui'
-import { setUser, isLoggedIn, getUser, logout } from "./auth"
+import {  isLoggedIn, getUser, logout } from "./auth"
 
 import styled from "styled-components"
 import { AnimatePresence } from "framer-motion";
@@ -90,7 +90,7 @@ function NavIdentity() {
         // signInSuccessUrl: '/app/profile',
         callbacks: {
           signInSuccessWithAuthResult: (result) => {
-            setUser(result.user);
+           // setUser(result.user);
             setCurrentUser(result.user);
             // navigate('/app/profile');
           }
