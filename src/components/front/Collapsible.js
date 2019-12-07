@@ -45,18 +45,18 @@ class Collapsible extends Component {
 
     if (prevState.height === 'auto' && this.state.shouldSwitchAutoOnNextCycle === true) {
      
-      // if(typeof window !== "undefined"){
-      // window.clearTimeout(this.timeout);
+      if(typeof window !== "undefined"){
+      window.clearTimeout(this.timeout);
     
-      // this.timeout = window.setTimeout(() => { // Set small timeout to ensure a true re-render
-      //   this.setState({
-      //     height: 0,
-      //     overflow: 'hidden',
-      //     isClosed: true,
-      //     shouldSwitchAutoOnNextCycle: false,
-      //   });
-      // }, 50);
-   // }
+      this.timeout = window.setTimeout(() => { // Set small timeout to ensure a true re-render
+        this.setState({
+          height: 0,
+          overflow: 'hidden',
+          isClosed: true,
+          shouldSwitchAutoOnNextCycle: false,
+        });
+      }, 50);
+    }
     }
 
     // If there has been a change in the open prop (controlled by accordion)
@@ -72,9 +72,9 @@ class Collapsible extends Component {
   }
 
   componentWillUnmount () {
-    // if(typeof window !== "undefined"){
-    //   window.clearTimeout(this.timeout);
-    // }
+    if(typeof window !== "undefined"){
+      window.clearTimeout(this.timeout);
+    }
     
   }
 

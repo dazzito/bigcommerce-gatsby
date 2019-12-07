@@ -5,7 +5,7 @@ import { useFirebase } from "gatsby-plugin-firebase"
 
 import { useState, useEffect} from "react"
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebaseui from 'firebaseui'
+
 import {  isLoggedIn, getUser, logout } from "./auth"
 
 import styled from "styled-components"
