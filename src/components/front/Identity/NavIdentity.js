@@ -151,7 +151,7 @@ function NavIdentity() {
                */}
               <hr/>
               
-              <StyledFirebaseAuth  firebaseAuth={firebase.auth()}/>
+              <StyledFirebaseAuth   /> 
               
               </Wrapper>
             
