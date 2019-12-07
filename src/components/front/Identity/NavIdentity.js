@@ -142,7 +142,7 @@ function NavIdentity() {
                */}
               <hr/>
               
-              <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/>
+              {/* <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/> */}
               
               </Wrapper>
             
