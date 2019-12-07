@@ -54,6 +54,36 @@ const Wrapper = styled.div`
 
 
 
+function getUiConfig(auth) {
+
+   
+
+  return {
+    signInFlow: 'popup',
+    signInOptions: [
+      {
+        provider:   auth.GoogleAuthProvider.PROVIDER_ID,
+        customParameters: {
+          // Forces account selection even when one account
+          // is available.
+          prompt: 'select_account'
+        }
+      },
+     
+      auth.EmailAuthProvider.PROVIDER_ID,
+      
+    ],
+    signInSuccessUrl: '/',
+    callbacks: {
+      signInSuccessWithAuthResult: (result) => {
+       // setUser(result.user);
+       // setCurrentUser(result.user);
+        // navigate('/app/profile');
+      }
+    },
+    credentialHelper: 'none'
+  };
+}
 
 
 function NavIdentity() {
@@ -66,38 +96,17 @@ function NavIdentity() {
     const [firebase, setFirebase] = useState();
     
     useFirebase(firebase => {
+      // alert(firebase); 
+      // console.log(firebase);
       setFirebase(firebase);
     }, [])
 
     const [user, setCurrentUser] = useState(getUser());
 
-    function getUiConfig(auth) {
-      return {
-        signInFlow: 'popup',
-        signInOptions: [
-          {
-            provider:   auth.GoogleAuthProvider.PROVIDER_ID,
-            customParameters: {
-              // Forces account selection even when one account
-              // is available.
-              prompt: 'select_account'
-            }
-          },
-         
-          auth.EmailAuthProvider.PROVIDER_ID,
-          
-        ],
-        signInSuccessUrl: '/',
-        callbacks: {
-          signInSuccessWithAuthResult: (result) => {
-           // setUser(result.user);
-            setCurrentUser(result.user);
-            // navigate('/app/profile');
-          }
-        },
-        credentialHelper: 'none'
-      };
-    }
+   // const config = getUiConfig(firebase.auth);
+
+
+
 
     if (isLoggedIn()) {
      //const { displayName, email } = getUser();
@@ -130,7 +139,7 @@ function NavIdentity() {
           <AnimatePresence>
     
           
-            {isOpen &&  firebase.auth  && <Modal close={() => setIsOpen(false)} children={
+            {isOpen &&  firebase  && <Modal close={() => setIsOpen(false)} children={
               
               <Wrapper>
               
@@ -142,7 +151,7 @@ function NavIdentity() {
                */}
               <hr/>
               
-              <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/>
+              <StyledFirebaseAuth  firebaseAuth={firebase.auth()}/>
               
               </Wrapper>
             
