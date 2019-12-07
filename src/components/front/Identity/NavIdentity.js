@@ -130,7 +130,7 @@ function NavIdentity() {
           <AnimatePresence>
     
           
-            {isOpen && firebase && <Modal close={() => setIsOpen(false)} children={
+            {isOpen &&  firebase.auth  && <Modal close={() => setIsOpen(false)} children={
               
               <Wrapper>
               
@@ -142,7 +142,7 @@ function NavIdentity() {
                */}
               <hr/>
               
-              {/* <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/> */}
+              <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/>
               
               </Wrapper>
             
