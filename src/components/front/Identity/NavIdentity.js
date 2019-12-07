@@ -130,9 +130,21 @@ function NavIdentity() {
           <AnimatePresence>
     
           
-            {isOpen && <Modal close={() => setIsOpen(false)} children={
+            {isOpen && firebase && <Modal close={() => setIsOpen(false)} children={
               
-              <div>Hello</div>
+              <Wrapper>
+              
+              <h3>Naaz Store</h3>
+              {/* <h4>Login</h4>
+
+              <InputCredential type="text" name="email" placeholder="Email Address"/>
+              <InputCredential type="password" name="password" placeholder="Password"/>
+               */}
+              <hr/>
+              
+              <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()}/>
+              
+              </Wrapper>
             
             
             } />}
