@@ -22,8 +22,78 @@ const Box = styled.div`
   position: relative;
 `
 
+const NavbarWrapper = styled.nav`
+
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  border-bottom: solid 5px #fafafa; 
+  flex-direction: row;
+    display: flex;
 
 
+    @media screen and (max-width: 1024px)
+  {
+    position: fixed;
+    height: 52px;
+    background: white;
+    z-index: 1;
+  }
+
+
+`
+
+const NavMenu = styled.div`
+
+
+  justify-content: flex-end;
+  flex: 1;
+
+
+  display: flex;
+    flex-direction: row;
+    background: white;
+@media screen and (max-width: 1024px)
+  {
+    position: fixed;
+    top: 52px;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    display: ${props => props.display}
+  }
+
+
+
+  
+
+   
+
+`;
+
+
+
+
+
+
+const NavLogo = styled.img`
+
+  max-height: 55px;
+  margin-left: 1.25em;
+  margin-top: 1.25em;
+
+
+@media screen and (max-width: 1024px)
+
+  {
+    max-height: 40px;
+    margin-left: 0.25em;
+     margin-top: 0.25em;
+  }
+
+`;
 
 
 const NavItem = styled(Link)`
@@ -35,6 +105,8 @@ const NavItem = styled(Link)`
     padding: 0.5rem 0.75rem;
     position: relative;
     align-self: center;
+    text-align: center;
+    
 
 
   &:hover{
@@ -44,6 +116,7 @@ const NavItem = styled(Link)`
   @media screen and (min-width: 1024px)
   {
     display: flex;
+    
   }
 
 `;
@@ -82,23 +155,26 @@ const Navbar = class extends React.Component {
   render() {
 
     return (
-      <nav
-        className="navbar is-transparent"
+      <NavbarWrapper
         role="navigation"
         aria-label="main-navigation">
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-            <img src={logo} alt="Naaz" />
+        
+        
+     
+        
+           
+           
+            <Link to="/" title="Logo">
+            <NavLogo src={logo} alt="Naaz" />
             </Link>
            
-            <NavItem to="/about">
+            {/* <NavItem to="/about">
             <motion.div animate={{y: -3, scale:0.9  }}
              transformTemplate={(props, transform) =>
               // Disable GPU acceleration to prevent blurry text
               transform.replace(" translateZ(0)", "")
-            }>
-
+            }> */}
+{/* 
 <span style={{fontWeight: 'bold'}}>
             By Leo Chupr.&emsp;
             </span>
@@ -112,11 +188,11 @@ const Navbar = class extends React.Component {
             &emsp;0.11 &emsp;
 
             </span>
-            
-                </motion.div>
+             */}
+                {/* </motion.div>
               </NavItem>
            
-          
+           */}
             
            
             {/* Hamburger menu */}
@@ -128,11 +204,13 @@ const Navbar = class extends React.Component {
               <span />
               <span />
             </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}>
-            <div className="navbar-start has-text-centered">
+        
+
+          
+          <NavMenu display={this.state.active ? "block" : 'none' }>
+          
+          
+
 
            
 
@@ -187,7 +265,7 @@ const Navbar = class extends React.Component {
               <CartContext.Consumer>
                 {value => {
                   return (
-                    <NavItem className="navbar-item menu-item-bigcommerce-cart" to="/cart">
+                    <NavItem to="/cart">
                      
                      <motion.div whileHover={{y: -3, scale:1.1, borderBottom: "solid 2px #212121"  }}
              transformTemplate={(props, transform) =>
@@ -208,9 +286,7 @@ const Navbar = class extends React.Component {
                 }}
               </CartContext.Consumer>
 
-              
-            </div>
-            <div className="navbar-end has-text-centered">
+    
 
               <NavIdentity/>
               {/* <a
@@ -222,10 +298,10 @@ const Navbar = class extends React.Component {
                   <img src={github} alt="Github" /> 
                 </span>
               </a> */}
-            </div>
-          </div>
-        </div>
-      </nav>
+        
+          </NavMenu>
+      
+      </NavbarWrapper>
     );
   }
 };

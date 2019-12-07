@@ -15,6 +15,14 @@ import styled from  'styled-components';
 const Wrapper = styled.div`
 
   border-top: solid 1px #eeeeee;
+
+  @media screen and (max-width: 1024px)
+  {
+    margin-top: 52px;
+    
+  }
+
+
 `;
 
 
