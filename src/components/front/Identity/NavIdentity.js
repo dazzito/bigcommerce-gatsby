@@ -121,9 +121,6 @@ function NavIdentity() {
 
 
 
-      alert(firebase)
-      console.log(firebase) 
-
       return (
         <>
           <a style={{ color: 'inherit',
