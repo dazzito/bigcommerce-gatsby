@@ -54,36 +54,6 @@ const Wrapper = styled.div`
 
 
 
-function getUiConfig(auth) {
-
-   
-
-  return {
-    signInFlow: 'popup',
-    signInOptions: [
-      {
-        provider:   auth.GoogleAuthProvider.PROVIDER_ID,
-        customParameters: {
-          // Forces account selection even when one account
-          // is available.
-          prompt: 'select_account'
-        }
-      },
-     
-      auth.EmailAuthProvider.PROVIDER_ID,
-      
-    ],
-    signInSuccessUrl: '/',
-    callbacks: {
-      signInSuccessWithAuthResult: (result) => {
-       // setUser(result.user);
-       // setCurrentUser(result.user);
-        // navigate('/app/profile');
-      }
-    },
-    credentialHelper: 'none'
-  };
-}
 
 
 function NavIdentity() {
@@ -96,17 +66,38 @@ function NavIdentity() {
     const [firebase, setFirebase] = useState();
     
     useFirebase(firebase => {
-      // alert(firebase); 
-      // console.log(firebase);
       setFirebase(firebase);
     }, [])
 
     const [user, setCurrentUser] = useState(getUser());
 
-   // const config = getUiConfig(firebase.auth);
-
-
-
+    function getUiConfig(auth) {
+      return {
+        signInFlow: 'popup',
+        signInOptions: [
+          {
+            provider:   auth.GoogleAuthProvider.PROVIDER_ID,
+            customParameters: {
+              // Forces account selection even when one account
+              // is available.
+              prompt: 'select_account'
+            }
+          },
+         
+          auth.EmailAuthProvider.PROVIDER_ID,
+          
+        ],
+        signInSuccessUrl: '/',
+        callbacks: {
+          signInSuccessWithAuthResult: (result) => {
+           // setUser(result.user);
+            setCurrentUser(result.user);
+            // navigate('/app/profile');
+          }
+        },
+        credentialHelper: 'none'
+      };
+    }
 
     if (isLoggedIn()) {
      //const { displayName, email } = getUser();
@@ -129,6 +120,10 @@ function NavIdentity() {
     } else {
 
 
+
+      alert(firebase)
+      console.log(firebase) 
+
       return (
         <>
           <a style={{ color: 'inherit',
@@ -139,7 +134,7 @@ function NavIdentity() {
           <AnimatePresence>
     
           
-            {isOpen &&  firebase  && <Modal close={() => setIsOpen(false)} children={
+            {isOpen &&  firebase !== "undefined"  && <Modal close={() => setIsOpen(false)} children={
               
               <Wrapper>
               
@@ -151,7 +146,7 @@ function NavIdentity() {
                */}
               <hr/>
               
-              <StyledFirebaseAuth   /> 
+              <StyledFirebaseAuth uiConfig={getUiConfig(firebase.auth)} firebaseAuth={firebase.auth()} />
               
               </Wrapper>
             
